@@ -18,6 +18,11 @@ public final class ThalesHSMService implements HSMService {
 	private final TranslationService translationService = new ThalesTranslationService();
 
 	@Override
+	public final String getName() {
+		return "THALES";
+	}
+
+	@Override
 	public final TranslationService translator() {
 		return translationService;
 	}
@@ -45,6 +50,12 @@ public final class ThalesHSMService implements HSMService {
 	@Override
 	public final IBMService ibm() {
 		return ibmService;
+	}
+
+
+	@Override
+	public final boolean shutdown() {
+		return true;
 	}
 
 }

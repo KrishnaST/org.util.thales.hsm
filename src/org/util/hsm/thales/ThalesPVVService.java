@@ -10,8 +10,7 @@ import org.util.hsm.api.constants.PinKeyType;
 import org.util.hsm.api.model.HSMResponse;
 import org.util.nanolog.Logger;
 
-public class ThalesPVVService implements PVVService{
-
+public class ThalesPVVService implements PVVService {
 
 	private final HSMService hsmService;
 
@@ -36,16 +35,18 @@ public class ThalesPVVService implements PVVService{
 	}
 	
 	//@formatter:on
-	public final HSMResponse calculatePVVUsingPinblock(final HSMConfig hsmConfig, final String pan12, final String pinblock, final PinBlockFormat format, final String pvk,
-			final String pvki, final PinKeyType pinKeyType, final String pinKey, final Logger logger) {
+	public final HSMResponse calculatePVVUsingPinblock(final HSMConfig hsmConfig, final String pan12, final String pinblock, final PinBlockFormat format,
+			final String pvk, final String pvki, final PinKeyType pinKeyType, final String pinKey, final Logger logger) {
 		try {
 			final String      command     = new StringBuilder("0000FW").append(pinKeyType).append(pinKey).append(pvk).append(pinblock).append(format)
-											.append(pan12).append(pvki).toString();
+					.append(pan12).append(pvki).toString();
 			final String      response    = HSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8);
 			return hsmResponse;
-		} catch (Exception e) {logger.error(e);}
+		} catch (Exception e) {
+			logger.error(e);
+		}
 		return HSMResponse.IO;
 	}
 

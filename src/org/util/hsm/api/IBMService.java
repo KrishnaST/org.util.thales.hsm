@@ -8,7 +8,6 @@ import org.util.nanolog.Logger;
 
 public interface IBMService {
 
-
 	public abstract HSMResponse calculateOffsetUsingPin(final HSMConfig hsmConfig, final String pan12, final String pin, final String valdata, final String pvk,
 			final Logger logger);
 
