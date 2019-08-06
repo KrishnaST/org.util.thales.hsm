@@ -1,4 +1,4 @@
-package org.util.thales.hsm.test;
+package org.util.hsm.test;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
