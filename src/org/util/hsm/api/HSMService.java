@@ -27,4 +27,8 @@ public interface HSMService {
 		}
 		throw new Exception("hsm service not found for name : " + name);
 	}
+	
+	public static void main(String[] args) throws Exception {
+		System.out.println(getService("SAFENET").getName());
+	}
 }
