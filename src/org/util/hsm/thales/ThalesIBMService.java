@@ -7,8 +7,8 @@ import org.util.hsm.api.IBMService;
 import org.util.hsm.api.constants.KSNDescriptor;
 import org.util.hsm.api.constants.PinBlockFormat;
 import org.util.hsm.api.constants.PinKeyType;
-import org.util.hsm.api.internals.Strings;
 import org.util.hsm.api.model.HSMResponse;
+import org.util.hsm.api.util.Strings;
 import org.util.nanolog.Logger;
 
 public final class ThalesIBMService implements IBMService {

@@ -4,8 +4,8 @@ import org.util.hsm.api.HSMConfig;
 import org.util.hsm.api.HSMConnect;
 import org.util.hsm.api.ThalesService;
 import org.util.hsm.api.constants.PinBlockFormat;
-import org.util.hsm.api.internals.Strings;
 import org.util.hsm.api.model.HSMResponse;
+import org.util.hsm.api.util.Strings;
 import org.util.nanolog.Logger;
 
 //@formatter:off

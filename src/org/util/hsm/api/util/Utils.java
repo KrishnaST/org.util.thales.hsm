@@ -1,4 +1,4 @@
-package org.util.hsm.api.internals;
+package org.util.hsm.api.util;
 
 public class Utils {
 

@@ -5,7 +5,7 @@ import org.util.hsm.api.HSMService;
 import org.util.hsm.api.constants.KSNDescriptor;
 import org.util.hsm.api.constants.PinBlockFormat;
 import org.util.hsm.api.constants.PinKeyType;
-import org.util.hsm.api.internals.Utils;
+import org.util.hsm.api.util.Utils;
 import org.util.hsm.thales.ThalesHSMService;
 import org.util.nanolog.Logger;
 
