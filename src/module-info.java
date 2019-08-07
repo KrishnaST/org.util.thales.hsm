@@ -1,5 +1,5 @@
 
-module org.util.thales.hsm {
+module org.util.hsm {
 
 	requires transitive org.util.nanolog;
 

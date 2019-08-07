@@ -10,7 +10,7 @@ public class HSMConfig {
 	public String       decTab           = "0123456789012345";
 	public int          lengthOfPinLMK   = 5;
 	
-	public HSMConfig(String host, int port) {
+	public HSMConfig(final String host, final int port) {
 		this.host = host;
 		this.port = port;
 	}
