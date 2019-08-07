@@ -25,6 +25,9 @@ public interface HSMService {
 		for (final HSMService service : serviceLoader) {
 			if (service.getName().equalsIgnoreCase(name)) return service;
 		}
+		for (final HSMService service : serviceLoader) {
+			if (service.getName().equalsIgnoreCase("THALES")) return service;
+		}
 		throw new Exception("hsm service not found for name : " + name);
 	}
 	
