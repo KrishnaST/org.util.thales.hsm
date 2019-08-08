@@ -17,6 +17,8 @@ public interface HSMService {
 	public abstract PVVService pvv();
 
 	public abstract IBMService ibm();
+	
+	public abstract MACService mac();
 
 	public abstract boolean shutdown();
 

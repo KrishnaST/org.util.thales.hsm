@@ -1,20 +1,24 @@
 package org.util.hsm.api.model;
 
-public class GenKeyResponse extends HSMResponse {
+public class GenKeyResponse {
 
 	public static final GenKeyResponse IO = new GenKeyResponse("IO");
 
-	public String keyUnderLMK;
-	public String keyUnderMasterKey;
-	public String kcv;
+	public final String  responseCode;
+	public final boolean isSuccess;
+	public String        keyUnderLMK;
+	public String        keyUnderMasterKey;
+	public String        kcv;
 
 	public GenKeyResponse(String responseCode) {
-		super(responseCode);
+		this.responseCode = responseCode;
+		this.isSuccess    = "00".equals(responseCode);
 	}
 
 	@Override
 	public String toString() {
-		return "GenKeyResponse [keyUnderLMK=" + keyUnderLMK + ", keyUnderMasterKey=" + keyUnderMasterKey + ", kcv=" + kcv + "]";
+		return "GenKeyResponse [responseCode=" + responseCode + ", isSuccess=" + isSuccess + ", keyUnderLMK=" + keyUnderLMK + ", keyUnderMasterKey="
+				+ keyUnderMasterKey + ", kcv=" + kcv + "]";
 	}
 
 }

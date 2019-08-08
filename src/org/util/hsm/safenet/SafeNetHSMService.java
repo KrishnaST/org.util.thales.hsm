@@ -4,6 +4,7 @@ import org.util.hsm.api.CVVService;
 import org.util.hsm.api.HSMService;
 import org.util.hsm.api.IBMService;
 import org.util.hsm.api.KeyService;
+import org.util.hsm.api.MACService;
 import org.util.hsm.api.PVVService;
 import org.util.hsm.api.ThalesService;
 import org.util.hsm.api.TranslationService;
@@ -55,6 +56,12 @@ public class SafeNetHSMService implements HSMService {
 	public boolean shutdown() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public MACService mac() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
