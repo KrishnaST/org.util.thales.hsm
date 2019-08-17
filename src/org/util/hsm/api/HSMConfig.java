@@ -40,28 +40,34 @@ public class HSMConfig {
 		}
 		
 		public final Builder withMinimumPinLength(final String minimumPinLength) {
-			hsmConfig.minimumPinLength = minimumPinLength;
+			this.hsmConfig.minimumPinLength = minimumPinLength;
 			return this;
 		}
 		
 		public final Builder withMaximumPinLength(final String maximumPinLength) {
-			hsmConfig.maximumPinLength = maximumPinLength;
+			this.hsmConfig.maximumPinLength = maximumPinLength;
 			return this;
 		}
 		
 		public final Builder withDecimalizationTable(final String decTab) {
-			hsmConfig.decTab = decTab;
+			this.hsmConfig.decTab = decTab;
 			return this;
 		}
 		
 		public final Builder withLengthOfPinLMK(final int lengthOfPinLMK) {
-			hsmConfig.lengthOfPinLMK = lengthOfPinLMK;
+			this.hsmConfig.lengthOfPinLMK = lengthOfPinLMK;
 			return this;
 		}
 		
 		public final HSMConfig build() {
-			return hsmConfig;
+			return this.hsmConfig;
 		}
+	}
+
+	@Override
+	public String toString() {
+		return "HSMConfig [host=" + host + ", port=" + port + ", minimumPinLength=" + minimumPinLength + ", maximumPinLength=" + maximumPinLength + ", decTab="
+				+ decTab + ", lengthOfPinLMK=" + lengthOfPinLMK + "]";
 	}
 	
 	
