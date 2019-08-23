@@ -65,7 +65,7 @@ public class HSMConfig {
 	}
 
 	@Override
-	public String toString() {
+	public final String toString() {
 		return "HSMConfig [host=" + host + ", port=" + port + ", minimumPinLength=" + minimumPinLength + ", maximumPinLength=" + maximumPinLength + ", decTab="
 				+ decTab + ", lengthOfPinLMK=" + lengthOfPinLMK + "]";
 	}

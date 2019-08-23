@@ -10,7 +10,7 @@ import org.util.hsm.api.constants.PinKeyType;
 import org.util.hsm.api.model.HSMResponse;
 import org.util.nanolog.Logger;
 
-public class ThalesPVVService implements PVVService {
+public final class ThalesPVVService implements PVVService {
 
 	private final HSMService hsmService;
 

@@ -6,7 +6,7 @@ import org.util.hsm.api.HSMConnect;
 import org.util.hsm.api.model.HSMResponse;
 import org.util.nanolog.Logger;
 
-public class ThalesCVVService implements CVVService {
+public final class ThalesCVVService implements CVVService {
 
 	//@formatter:off
 	public final HSMResponse calculateCVV(final HSMConfig hsmConfig, final String pan, final String serviceCode, final String expiry, final String cvk1, final String cvk2, final Logger logger) {

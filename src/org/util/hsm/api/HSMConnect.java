@@ -18,9 +18,9 @@ public class HSMConnect {
 	//@formatter:off
 	public static final String send(final HSMConfig hsmConfig, final String command, final Logger logger) throws UnknownHostException, IOException {
 		logger.trace("hsm command", command);
-		try(Socket sc = new Socket(hsmConfig.host, hsmConfig.port);
-			DataInputStream din = new DataInputStream(sc.getInputStream());
-			DataOutputStream dos = new DataOutputStream(sc.getOutputStream())) {
+		try(final Socket sc = new Socket(hsmConfig.host, hsmConfig.port);
+			final DataInputStream din = new DataInputStream(sc.getInputStream());
+			final DataOutputStream dos = new DataOutputStream(sc.getOutputStream())) {
 			sc.setSoTimeout(5000);
 			dos.writeUTF(command);
 			dos.flush();

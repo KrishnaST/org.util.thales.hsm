@@ -14,7 +14,7 @@ import org.util.hsm.api.model.GenKeyResponse;
 import org.util.hsm.api.model.HSMResponse;
 import org.util.nanolog.Logger;
 
-public class ThalesKeyService implements KeyService {
+public final class ThalesKeyService implements KeyService {
 	
 	private final String MODE_GENERATE         = "0";
 	private final String MODE_GENERATE_EXPORT  = "1";

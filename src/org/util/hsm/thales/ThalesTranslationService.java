@@ -9,7 +9,7 @@ import org.util.hsm.api.constants.PinBlockFormat;
 import org.util.hsm.api.model.HSMResponse;
 import org.util.nanolog.Logger;
 
-public class ThalesTranslationService implements TranslationService {
+public final class ThalesTranslationService implements TranslationService {
 
 	public final HSMResponse fromZPKToZPK(final HSMConfig hsmConfig, final String pan12, final String pinblock, final PinBlockFormat sourceFormat, final String sourceZPK,
 			final PinBlockFormat targetFormat, final String targetZPK, final Logger logger) {
