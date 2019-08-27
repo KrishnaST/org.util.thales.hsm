@@ -19,6 +19,8 @@ public interface HSMService {
 	public abstract IBMService ibm();
 	
 	public abstract MACService mac();
+	
+	public abstract String getResponseDescription(final String code);
 
 	public abstract boolean shutdown();
 

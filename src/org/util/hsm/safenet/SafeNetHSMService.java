@@ -64,4 +64,10 @@ public class SafeNetHSMService implements HSMService {
 		return null;
 	}
 
+	@Override
+	public String getResponseDescription(String code) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

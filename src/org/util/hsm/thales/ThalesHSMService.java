@@ -64,4 +64,9 @@ public final class ThalesHSMService implements HSMService {
 		return macService;
 	}
 
+	@Override
+	public final String getResponseDescription(String code) {
+		return null;
+	}
+
 }
