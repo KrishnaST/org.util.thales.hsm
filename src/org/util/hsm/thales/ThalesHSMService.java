@@ -66,7 +66,7 @@ public final class ThalesHSMService implements HSMService {
 
 	@Override
 	public final String getResponseDescription(String code) {
-		return null;
+		return ThalesResponseDescription.codemap.get(code);
 	}
 
 }
