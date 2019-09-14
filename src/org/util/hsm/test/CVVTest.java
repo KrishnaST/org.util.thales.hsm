@@ -11,6 +11,8 @@ public class CVVTest {
 	public static HSMService hsmService = new ThalesHSMService();
 
 	public static void main(String[] args) {
-		hsmService.cvv().calculateCVV(hsmConfig, "6084070020000310", "000", "2105", "E035EB860AB1D806", "CD2ABFC49162BC1B", Logger.CONSOLE);
+		hsmService.cvv().calculateCVV(hsmConfig, "6077990020000011", "000", "2005", "150D8C0DF3348295", "B75E6BCE8B0A1D07", Logger.CONSOLE);
+		hsmService.cvv().calculateCVV(hsmConfig, "6077990020000011", "620", "2005", "150D8C0DF3348295", "B75E6BCE8B0A1D07", Logger.CONSOLE);
+		hsmService.cvv().calculateCVV(hsmConfig, "6077990020000011", "999", "2005", "150D8C0DF3348295", "B75E6BCE8B0A1D07", Logger.CONSOLE);
 	}
 }
