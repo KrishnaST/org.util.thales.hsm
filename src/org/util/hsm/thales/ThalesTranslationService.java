@@ -1,7 +1,7 @@
 package org.util.hsm.thales;
 
 import org.util.hsm.api.HSMConfig;
-import org.util.hsm.api.HSMConnect;
+import org.util.hsm.api.ThalesHSMConnect;
 import org.util.hsm.api.TranslationService;
 import org.util.hsm.api.constants.BDKType;
 import org.util.hsm.api.constants.KSNDescriptor;
@@ -16,7 +16,7 @@ public final class ThalesTranslationService implements TranslationService {
 		try {
 			final String      command     = new StringBuilder().append("0000CC").append(sourceZPK).append(targetZPK).append(hsmConfig.maximumPinLength)
 											.append(pinblock).append(sourceFormat).append(targetFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;
@@ -29,7 +29,7 @@ public final class ThalesTranslationService implements TranslationService {
 		try {
 			final String      command     = new StringBuilder().append("0000CA").append(sourceTPK).append(targetZPK).append(hsmConfig.maximumPinLength)
 											.append(sourcePinBlock).append(sourceFormat).append(targetFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;
@@ -44,7 +44,7 @@ public final class ThalesTranslationService implements TranslationService {
 			final String      command     = new StringBuilder().append("0000CA").append(sourceTPK).append(sourceBDKType).append(targetBDK)
 											.append(targetDescriptor).append(targetKSN).append(hsmConfig.maximumPinLength).append(sourcePinBlock)
 											.append(sourceFormat).append(targetFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;
@@ -61,7 +61,7 @@ public final class ThalesTranslationService implements TranslationService {
 			final String      command     = new StringBuilder().append("0000G0").append(bdkTypeFlag).append(sourceBDK).append(targetBDKType).append(targetBDK)
 					.append(sourceDescriptor).append(sourceKSN).append(targetDescriptor).append(targetKSN).append(sourcePinBlock).append(sourceFormat)
 					.append(targeFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;
@@ -75,7 +75,7 @@ public final class ThalesTranslationService implements TranslationService {
 		try {
 			final String      command     = new StringBuilder().append("0000G0").append(sourceBDKType).append(sourceBDK).append(targetZPK)
 					.append(sourceDescriptor).append(sourceKSN).append(sourcePinBlock).append(sourceFormat).append(targetFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;
@@ -87,7 +87,7 @@ public final class ThalesTranslationService implements TranslationService {
 	public final HSMResponse fromZPKToLMK(final HSMConfig hsmConfig, final String pan12, final String sourcePinblock, final PinBlockFormat sourceFormat, final String sourceZPK, final Logger logger) {
 		try {
 			final StringBuilder command     = new StringBuilder(70).append("0000JE").append(sourceZPK).append(sourcePinblock).append(sourceFormat).append(pan12);
-			final String      response    	= HSMConnect.send(hsmConfig, command.toString(), logger);
+			final String      response    	= ThalesHSMConnect.send(hsmConfig, command.toString(), logger);
 			final HSMResponse hsmResponse 	= new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 8 + hsmConfig.lengthOfPinLMK);
 			return hsmResponse;
@@ -99,7 +99,7 @@ public final class ThalesTranslationService implements TranslationService {
 	public final HSMResponse fromTPKToLMK(final HSMConfig hsmConfig, final String pan12, final String sourcePinblock, final PinBlockFormat sourceFormat, final String sourceTPK, final Logger logger) {
 		try {
 			final String      command     = new StringBuilder().append("0000JC").append(sourceTPK).append(sourcePinblock).append(sourceFormat).append(pan12).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 8 + hsmConfig.lengthOfPinLMK);
 			return hsmResponse;
@@ -110,7 +110,7 @@ public final class ThalesTranslationService implements TranslationService {
 	public final HSMResponse fromLMKToZPK(final HSMConfig hsmConfig, final String pan12, final String pinlmk, final PinBlockFormat targetFormat, final String targetZPK, final Logger logger) {
 		try {
 			final String      command     = new StringBuilder().append("0000JG").append(targetZPK).append(targetFormat).append(pan12).append(pinlmk).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(10, 26);
 			return hsmResponse;

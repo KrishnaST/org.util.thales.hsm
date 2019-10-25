@@ -1,7 +1,7 @@
 package org.util.hsm.thales;
 
 import org.util.hsm.api.HSMConfig;
-import org.util.hsm.api.HSMConnect;
+import org.util.hsm.api.ThalesHSMConnect;
 import org.util.hsm.api.HSMService;
 import org.util.hsm.api.IBMService;
 import org.util.hsm.api.constants.KSNDescriptor;
@@ -37,7 +37,7 @@ public final class ThalesIBMService implements IBMService {
 		try {
 			final String      command     = new StringBuilder(70).append("0000DE").append(pvk).append(pinlmk).append(hsmConfig.minimumPinLength)
 											.append(pan12).append(hsmConfig.decTab).append(valdata).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 12);
 			return hsmResponse;
@@ -51,7 +51,7 @@ public final class ThalesIBMService implements IBMService {
 		try {
 			final String command = new StringBuilder(118).append("0000BK").append(pinKeyType).append(pinKey).append(pvk).append(pinblock).append(format)
 					.append(hsmConfig.minimumPinLength).append(pan12).append(hsmConfig.decTab).append(valdata).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 12);
 			return hsmResponse;
@@ -66,7 +66,7 @@ public final class ThalesIBMService implements IBMService {
 			final String      command     = new StringBuilder(150).append("0000DU").append(pinKeyType).append(pinKey).append(pvk).append(pinblock).append(format)
 					.append(hsmConfig.minimumPinLength).append(pan12).append(hsmConfig.decTab).append(valdata)
 					.append(Strings.padRight(new StringBuilder(offset), 'F', 12)).append(newPinblock).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 12);
 			return hsmResponse;
@@ -81,7 +81,7 @@ public final class ThalesIBMService implements IBMService {
 			final String command = new StringBuilder().append("0000DA").append(tpk).append(pvk).append(hsmConfig.maximumPinLength).append(pinblock)
 					.append(format).append(hsmConfig.minimumPinLength).append(pan12).append(hsmConfig.decTab).append(valdata)
 					.append(Strings.padRight(new StringBuilder(offset), 'F', 12)).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}
@@ -95,7 +95,7 @@ public final class ThalesIBMService implements IBMService {
 			final String command = new StringBuilder().append("0000EA").append(zpk).append(pvk).append(hsmConfig.maximumPinLength).append(pinblock)
 					.append(format).append(hsmConfig.minimumPinLength).append(pan12).append(hsmConfig.decTab).append(valdata)
 					.append(Strings.padRight(new StringBuilder(offset), 'F', 12)).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}
@@ -109,7 +109,7 @@ public final class ThalesIBMService implements IBMService {
 			final String      command     = new StringBuilder(128).append("0000GO").append(DUKPT_MODE).append(bdk).append(pvk).append(descriptor).append(ksn)
 					.append(pinblock).append(format).append(hsmConfig.minimumPinLength).append(pan12).append(hsmConfig.decTab)
 					.append(valdata).append(Strings.padRight(new StringBuilder(offset), 'F', 12)).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}

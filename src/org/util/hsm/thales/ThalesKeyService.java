@@ -1,7 +1,7 @@
 package org.util.hsm.thales;
 
 import org.util.hsm.api.HSMConfig;
-import org.util.hsm.api.HSMConnect;
+import org.util.hsm.api.ThalesHSMConnect;
 import org.util.hsm.api.KeyService;
 import org.util.hsm.api.constants.BDKType;
 import org.util.hsm.api.constants.KeyLength;
@@ -27,7 +27,7 @@ public final class ThalesKeyService implements KeyService {
 		try {
 			final String command = new StringBuilder().append("0000BUFF").append(keyLength.getLength() - 1).append(key).append(";").append(keyType)
 								  .append(";001").toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8, 14);
 			return hsmResponse;
@@ -45,7 +45,7 @@ public final class ThalesKeyService implements KeyService {
 	public final GenKeyResponse generateKey(final HSMConfig hsmConfig, final KeyType keyType, final KeyScheme.VARIANT keyScheme, final Logger logger) {
 		try {
 			final String         command     = new StringBuilder().append("0000A0").append(MODE_GENERATE).append(keyType).append(keyScheme.getType()).toString();
-			final String         response    = HSMConnect.send(hsmConfig, command, logger);
+			final String         response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				final int index = 8 + keyScheme.getLength() * 16 + (keyScheme.getLength() / 2);
@@ -74,7 +74,7 @@ public final class ThalesKeyService implements KeyService {
 			final String         mKeyFlag    = masterKeyType == MasterKeyType.ZMK ? "0" : "1";
 			final String         command     = new StringBuilder().append("0000A0").append(MODE_GENERATE_EXPORT).append(keyType).append(keyScheme).append(";")
 											   .append(mKeyFlag).append(mKeyLmk).append(keySchemeExport).toString();
-			final String         response    = HSMConnect.send(hsmConfig, command, logger);
+			final String         response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				final int lKeyIndex = 8 + keyScheme.getLength() * 16 + (keyScheme.getLength() / 2);
@@ -101,7 +101,7 @@ public final class ThalesKeyService implements KeyService {
 			final String bdkMode     = bdkType == BDKType.BDK1 ? "1" : "2";
 			final String command     = new StringBuilder().append("0000A0").append(MODE_DERIVE).append(KeyType.IPEK)
 					.append(KeyScheme.VARIANT.DOUBLE_LEN).append(DERIVE_KEY_MODE_DUKPT).append(bdkMode).append(bdklmk).append(iksn).toString();
-			final String response    = HSMConnect.send(hsmConfig, command, logger);
+			final String response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				hsmResponse.keyUnderLMK = response.substring(8, 41);
@@ -129,7 +129,7 @@ public final class ThalesKeyService implements KeyService {
 			final String mType   = mKeyType == MasterKeyType.ZMK ? "0" : "1";
 			final String command = new StringBuilder().append("0000A0").append(MODE_DERIVE_EXPORT).append(KeyType.IPEK).append(VARIANT.DOUBLE_LEN).append(DERIVE_KEY_MODE_DUKPT)
 					.append(bdkMode).append(bdklmk).append(iksn).append(";").append(mType).append(mKeyLmk).append(ANSI.DOUBLE_LEN).toString();
-			final String         response    = HSMConnect.send(hsmConfig, command, logger);
+			final String         response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				hsmResponse.keyUnderLMK = response.substring(8, 41);
@@ -154,7 +154,7 @@ public final class ThalesKeyService implements KeyService {
 		try {
 			StringBuilder command = new StringBuilder().append("0000A4").append(keys.length).append(keyType).append(keyScheme);
 			for (String key : keys) command.append(key);
-			final String         response    = HSMConnect.send(hsmConfig, command.toString(), logger);
+			final String         response    = ThalesHSMConnect.send(hsmConfig, command.toString(), logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				final int keyLen = keyScheme.getLength() * 16 + (keyScheme.getLength() / 2);
@@ -178,7 +178,7 @@ public final class ThalesKeyService implements KeyService {
 	public final GenKeyResponse importKey(final HSMConfig hsmConfig, final KeyType keyType, final VARIANT importScheme, final String keyzmk, final String zmklmk, final Logger logger) {
 		try {
 			String command = new StringBuilder().append("0000A6").append(keyType).append(zmklmk).append(keyzmk).append(importScheme.getType()).toString();
-			final String         response    = HSMConnect.send(hsmConfig, command.toString(), logger);
+			final String         response    = ThalesHSMConnect.send(hsmConfig, command.toString(), logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				final int keyLen = importScheme.getLength() * 16 + (importScheme.getLength() / 2);
@@ -205,7 +205,7 @@ public final class ThalesKeyService implements KeyService {
 			final String mKeyFlag = mKeyType == MasterKeyType.ZMK ? "0" : "1";
 			final String command  = new StringBuilder().append("0000A8").append(sourceKeyType).append(";").append(mKeyFlag).append(mKeylmk).append(keylmk)
 									.append(exportScheme).toString();
-			final String response = HSMConnect.send(hsmConfig, command.toString(), logger);
+			final String response = ThalesHSMConnect.send(hsmConfig, command.toString(), logger);
 			final GenKeyResponse hsmResponse = new GenKeyResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) {
 				final int keyLen = exportScheme.getLength() * 16 + (exportScheme.getLength() / 2);

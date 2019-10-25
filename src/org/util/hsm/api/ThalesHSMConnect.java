@@ -13,7 +13,7 @@ import java.net.UnknownHostException;
 import org.util.hsm.api.util.ByteHexUtil;
 import org.util.nanolog.Logger;
 
-public class HSMConnect {
+public class ThalesHSMConnect {
 
 	//@formatter:off
 	public static final String send(final HSMConfig hsmConfig, final String command, final Logger logger) throws UnknownHostException, IOException {

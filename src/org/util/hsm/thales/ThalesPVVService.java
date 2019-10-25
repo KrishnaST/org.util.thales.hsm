@@ -1,7 +1,7 @@
 package org.util.hsm.thales;
 
 import org.util.hsm.api.HSMConfig;
-import org.util.hsm.api.HSMConnect;
+import org.util.hsm.api.ThalesHSMConnect;
 import org.util.hsm.api.HSMService;
 import org.util.hsm.api.PVVService;
 import org.util.hsm.api.constants.KSNDescriptor;
@@ -26,7 +26,7 @@ public final class ThalesPVVService implements PVVService {
 			final HSMResponse BAResponse = hsmService.thales().encryptPinUnderLMK(hsmConfig, pan12, pin, logger);
 			if (!BAResponse.isSuccess) return BAResponse;
 			final String      command     = new StringBuilder("0000DG").append(pvk).append(BAResponse.value).append(pan12).append(pvki).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8);
 			return hsmResponse;
@@ -40,7 +40,7 @@ public final class ThalesPVVService implements PVVService {
 		try {
 			final String      command     = new StringBuilder("0000FW").append(pinKeyType).append(pinKey).append(pvk).append(pinblock).append(format)
 					.append(pan12).append(pvki).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if (hsmResponse.isSuccess) hsmResponse.value = response.substring(8);
 			return hsmResponse;
@@ -56,7 +56,7 @@ public final class ThalesPVVService implements PVVService {
 		try {
 			final String command  = new StringBuilder(128).append("0000GQ").append(DUKPT_MODE).append(bdk).append(pvk).append(ksnDescriptor)
 									.append(ksn).append(pinBlock).append(format).append(pan12).append(pvki).append(pvv).toString();
-			final String response = HSMConnect.send(hsmConfig, command, logger);
+			final String response = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}
@@ -69,7 +69,7 @@ public final class ThalesPVVService implements PVVService {
 		try {
 			final String command = new StringBuilder("0000EC").append(zpk).append(pvk).append(pinBlock).append(format).append(pan12).append(pvki)
 								  .append(pvv).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}
@@ -82,7 +82,7 @@ public final class ThalesPVVService implements PVVService {
 		try {
 			final String command = new StringBuilder("0000DC").append(tpk).append(pvk).append(pinBlock).append(format).append(pan12).append(pvki)
 									.append(pvv).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			return hsmResponse;
 		} catch (Exception e) {logger.error(e);}
@@ -94,7 +94,7 @@ public final class ThalesPVVService implements PVVService {
 		try {
 			final String      command     = new StringBuilder(128).append("0000CU").append(pinKeyType).append(pinKey).append(pvk).append(pinBlock)
 											.append(format).append(pan12).append(pvki).append(pvv).append(newPinBlock).toString();
-			final String      response    = HSMConnect.send(hsmConfig, command, logger);
+			final String      response    = ThalesHSMConnect.send(hsmConfig, command, logger);
 			final HSMResponse hsmResponse = new HSMResponse(response.substring(6, 8));
 			if(hsmResponse.isSuccess) hsmResponse.value = response.substring(8,12);
 			return hsmResponse;

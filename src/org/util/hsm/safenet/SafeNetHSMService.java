@@ -9,7 +9,9 @@ import org.util.hsm.api.PVVService;
 import org.util.hsm.api.ThalesService;
 import org.util.hsm.api.TranslationService;
 
-public class SafeNetHSMService implements HSMService {
+public final class SafeNetHSMService implements HSMService {
+
+	private final KeyService keyService = new SafenetKeyService();
 
 	@Override
 	public String getName() {
@@ -17,55 +19,54 @@ public class SafeNetHSMService implements HSMService {
 	}
 
 	@Override
-	public TranslationService translator() {
+	public final TranslationService translator() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public CVVService cvv() {
+	public final CVVService cvv() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public KeyService key() {
+	public final KeyService key() {
+		return keyService;
+	}
+
+	@Override
+	public final ThalesService thales() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ThalesService thales() {
+	public final PVVService pvv() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PVVService pvv() {
+	public final IBMService ibm() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public IBMService ibm() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean shutdown() {
+	public final boolean shutdown() {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public MACService mac() {
+	public final MACService mac() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public String getResponseDescription(String code) {
+	public final String getResponseDescription(String code) {
 		// TODO Auto-generated method stub
 		return null;
 	}
